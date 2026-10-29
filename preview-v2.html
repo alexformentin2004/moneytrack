@@ -31,6 +31,32 @@
 .nav button{transition:color .18s,transform .18s}
 .nav button:active{transform:scale(.93)}
 .nav .nav-add:active{transform:translateY(-13px) scale(.94)}
+
+/* V2.2: clearly visible phone frame and softer controls */
+@media (min-width:650px){
+ html{background:#cdd6e5}
+ body{display:block!important;min-height:100vh;padding:22px 0 42px!important;background:radial-gradient(ellipse at 50% 15%,#f0f3fa 0%,#d5dce8 72%)!important}
+ .app{box-sizing:border-box!important;display:block!important;position:relative!important;width:402px!important;max-width:402px!important;height:calc(100dvh - 44px)!important;min-height:600px!important;max-height:880px!important;margin:0 auto!important;padding:45px 17px 105px!important;overflow-y:auto!important;overflow-x:hidden!important;border:10px solid #151b2b!important;border-radius:52px!important;background:#e8edf5!important;box-shadow:0 0 0 3px #8a96aa,0 0 0 7px #edf1f7,0 28px 70px #18274455!important}
+ .app:before{content:""!important;display:block!important;position:sticky!important;top:-39px!important;z-index:20!important;width:118px!important;height:27px!important;margin:-40px auto 17px!important;border-radius:30px!important;background:#151b2b!important}
+ .nav{position:fixed!important;bottom:32px!important;width:382px!important;max-width:382px!important;left:50%!important;transform:translateX(-50%)!important;border-radius:0 0 40px 40px!important}
+}
+@media (min-width:650px) and (max-height:940px){
+ body{padding-top:12px!important}
+ .app{height:calc(100dvh - 24px)!important}
+ .nav{bottom:22px!important}
+}
+button.primary,button.secondary,button.danger,.primary,.secondary,.danger{border-radius:999px!important}
+.mt-period-btn,.mt-filter-tabs button,.mt-accounts-title button,.mt-page-title button{border-radius:999px!important}
+.mt-stat,.mt-small-account,.mt-goal-card,.mt-chart-card,.panel,.mt-account-card{border-radius:27px!important}
+.mt-stat-icon,.mt-tx-icon,.mt-card-icon,.mt-small-icon,.mt-choice-icon{border-radius:50%!important}
+.mt-small-icon{width:40px!important;height:40px!important;display:grid!important;place-items:center!important}
+.mt-card-icon{display:grid;place-items:center;width:43px;height:43px;background:#ffffff24}
+.mt-period-choice{border-radius:23px!important}
+.mt-modal-title button,.top-settings{border-radius:50%!important}
+.mt-tx-actions button{border-radius:999px!important;padding:7px 10px!important}
+.nav button:not(.nav-add){border-radius:18px!important}
+.nav .nav-add{border-radius:50%!important}
+input,select,textarea{border-radius:18px!important}
 </style></head><body><main class="app"><div class="top"><div><div class="logo">MoneyTrack<span class="brand-dot">.</span></div><div class="muted mini">Il tuo denaro, con chiarezza</div></div><button class="top-settings" onclick="setTab('settings')" aria-label="Impostazioni">⚙</button></div><div id="notice"></div><section id="home"></section><section id="movements" class="hidden"></section><section id="analysis" class="hidden"></section><section id="accounts" class="hidden"></section><section id="savings" class="hidden"></section><section id="settings" class="hidden"></section></main><nav class="nav" id="nav"></nav><script>
 const CATS=['Casa e bollette','Alimentari e supermercato','Ristoranti e bar','Auto e carburante','Trasporti','Shopping','Salute e benessere','Sport e palestra','Svago e intrattenimento','Abbonamenti','Viaggi e vacanze','Regali','Imposte e commissioni','Altro'];
 const DB='moneytrack-preview-v2';let db,state,tab='home',editing=null,showComposer=false;const today=()=>new Date().toLocaleDateString('en-CA');const uid=()=>crypto.randomUUID();const euro=n=>new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(n/100);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const cents=v=>Math.round(Number(String(v).replace(',','.'))*100);const dateFmt=s=>new Date(s+'T12:00:00').toLocaleDateString('it-IT');
